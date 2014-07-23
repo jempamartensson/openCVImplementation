@@ -1,0 +1,23 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __cplusplus
+
+#import <stdio.h>
+#import <iostream>
+#import "opencv2/core/core.hpp"
+#import "opencv2/features2d/features2d.hpp"
+#import "opencv2/highgui/highgui.hpp"
+#import "opencv2/nonfree/features2d.hpp"
+#import "opencv2/calib3d/calib3d.hpp"
+#import "opencv2/opencv.hpp"
+#endif
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+#import <Cocoa/Cocoa.h>
+#endif

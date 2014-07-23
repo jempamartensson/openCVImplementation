@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */; };
+		7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F65ED04197976F200C39397 /* JMPRgetCamera.mm */; };
+		7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEACA71976E4300001C05C /* openCVtoImage.mm */; };
+		7FDA50CF1975AC590063CEFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA50CE1975AC590063CEFD /* Cocoa.framework */; };
+		7FDA50D91975AC590063CEFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FDA50D71975AC590063CEFD /* InfoPlist.strings */; };
+		7FDA50DB1975AC590063CEFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA50DA1975AC590063CEFD /* main.m */; };
+		7FDA50DF1975AC590063CEFD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7FDA50DD1975AC590063CEFD /* Credits.rtf */; };
+		7FDA50E21975AC590063CEFD /* JMPRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA50E11975AC590063CEFD /* JMPRAppDelegate.m */; };
+		7FDA50E51975AC590063CEFD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDA50E31975AC590063CEFD /* MainMenu.xib */; };
+		7FDA50E71975AC590063CEFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FDA50E61975AC590063CEFD /* Images.xcassets */; };
+		7FDA50EE1975AC590063CEFD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA50ED1975AC590063CEFD /* XCTest.framework */; };
+		7FDA50EF1975AC590063CEFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA50CE1975AC590063CEFD /* Cocoa.framework */; };
+		7FDA50F71975AC590063CEFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FDA50F51975AC590063CEFD /* InfoPlist.strings */; };
+		7FDA50F91975AC590063CEFD /* openCVImplementationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA50F81975AC590063CEFD /* openCVImplementationTests.m */; };
+		7FDA51041975CD6C0063CEFD /* JMPRAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */; };
+		7FDA51061976CDE60063CEFD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA51051976CDE60063CEFD /* opencv2.framework */; };
+		7FFFEA01197E795300483D0C /* JMPRcalc3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7FDA50F01975AC590063CEFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FDA50C31975AC590063CEFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7FDA50CA1975AC590063CEFD;
+			remoteInfo = openCVImplementation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7F241A52197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcreate3DchessboardCorners.h; sourceTree = "<group>"; };
+		7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcreate3DchessboardCorners.mm; sourceTree = "<group>"; };
+		7F65ED03197976F200C39397 /* JMPRgetCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRgetCamera.h; sourceTree = "<group>"; };
+		7F65ED04197976F200C39397 /* JMPRgetCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRgetCamera.mm; sourceTree = "<group>"; };
+		7FBEACA61976E4300001C05C /* openCVtoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openCVtoImage.h; path = ../openCVtoImage.h; sourceTree = "<group>"; };
+		7FBEACA71976E4300001C05C /* openCVtoImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = openCVtoImage.mm; path = ../openCVtoImage.mm; sourceTree = "<group>"; };
+		7FDA50CB1975AC590063CEFD /* openCVImplementation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openCVImplementation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FDA50CE1975AC590063CEFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7FDA50D11975AC590063CEFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7FDA50D21975AC590063CEFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7FDA50D31975AC590063CEFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7FDA50D61975AC590063CEFD /* openCVImplementation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "openCVImplementation-Info.plist"; sourceTree = "<group>"; };
+		7FDA50D81975AC590063CEFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7FDA50DA1975AC590063CEFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7FDA50DC1975AC590063CEFD /* openCVImplementation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "openCVImplementation-Prefix.pch"; sourceTree = "<group>"; };
+		7FDA50DE1975AC590063CEFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		7FDA50E01975AC590063CEFD /* JMPRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMPRAppDelegate.h; sourceTree = "<group>"; };
+		7FDA50E11975AC590063CEFD /* JMPRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMPRAppDelegate.m; sourceTree = "<group>"; };
+		7FDA50E41975AC590063CEFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7FDA50E61975AC590063CEFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7FDA50EC1975AC590063CEFD /* openCVImplementationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openCVImplementationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FDA50ED1975AC590063CEFD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7FDA50F41975AC590063CEFD /* openCVImplementationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "openCVImplementationTests-Info.plist"; sourceTree = "<group>"; };
+		7FDA50F61975AC590063CEFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7FDA50F81975AC590063CEFD /* openCVImplementationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openCVImplementationTests.m; sourceTree = "<group>"; };
+		7FDA51021975CD6C0063CEFD /* JMPRAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRAppController.h; sourceTree = "<group>"; };
+		7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRAppController.mm; sourceTree = "<group>"; };
+		7FDA51051976CDE60063CEFD /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../frameworks/opencv2.framework; sourceTree = "<group>"; };
+		7FFFE9FF197E795300483D0C /* JMPRcalc3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcalc3d.h; sourceTree = "<group>"; };
+		7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcalc3d.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7FDA50C81975AC590063CEFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA51061976CDE60063CEFD /* opencv2.framework in Frameworks */,
+				7FDA50CF1975AC590063CEFD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FDA50E91975AC590063CEFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA50EF1975AC590063CEFD /* Cocoa.framework in Frameworks */,
+				7FDA50EE1975AC590063CEFD /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7FDA50C21975AC590063CEFD = {
+			isa = PBXGroup;
+			children = (
+				7FDA50D41975AC590063CEFD /* openCVImplementation */,
+				7FDA50F21975AC590063CEFD /* openCVImplementationTests */,
+				7FDA50CD1975AC590063CEFD /* Frameworks */,
+				7FDA50CC1975AC590063CEFD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7FDA50CC1975AC590063CEFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA50CB1975AC590063CEFD /* openCVImplementation.app */,
+				7FDA50EC1975AC590063CEFD /* openCVImplementationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7FDA50CD1975AC590063CEFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA51051976CDE60063CEFD /* opencv2.framework */,
+				7FDA50CE1975AC590063CEFD /* Cocoa.framework */,
+				7FDA50ED1975AC590063CEFD /* XCTest.framework */,
+				7FDA50D01975AC590063CEFD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7FDA50D01975AC590063CEFD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA50D11975AC590063CEFD /* AppKit.framework */,
+				7FDA50D21975AC590063CEFD /* CoreData.framework */,
+				7FDA50D31975AC590063CEFD /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7FDA50D41975AC590063CEFD /* openCVImplementation */ = {
+			isa = PBXGroup;
+			children = (
+				7FBEACA61976E4300001C05C /* openCVtoImage.h */,
+				7FBEACA71976E4300001C05C /* openCVtoImage.mm */,
+				7FDA50E01975AC590063CEFD /* JMPRAppDelegate.h */,
+				7FDA50E11975AC590063CEFD /* JMPRAppDelegate.m */,
+				7FDA50E31975AC590063CEFD /* MainMenu.xib */,
+				7FDA51021975CD6C0063CEFD /* JMPRAppController.h */,
+				7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */,
+				7FFFE9FF197E795300483D0C /* JMPRcalc3d.h */,
+				7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */,
+				7F65ED03197976F200C39397 /* JMPRgetCamera.h */,
+				7F65ED04197976F200C39397 /* JMPRgetCamera.mm */,
+				7F241A52197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.h */,
+				7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */,
+				7FDA50E61975AC590063CEFD /* Images.xcassets */,
+				7FDA50D51975AC590063CEFD /* Supporting Files */,
+			);
+			path = openCVImplementation;
+			sourceTree = "<group>";
+		};
+		7FDA50D51975AC590063CEFD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA50D61975AC590063CEFD /* openCVImplementation-Info.plist */,
+				7FDA50D71975AC590063CEFD /* InfoPlist.strings */,
+				7FDA50DA1975AC590063CEFD /* main.m */,
+				7FDA50DC1975AC590063CEFD /* openCVImplementation-Prefix.pch */,
+				7FDA50DD1975AC590063CEFD /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FDA50F21975AC590063CEFD /* openCVImplementationTests */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA50F81975AC590063CEFD /* openCVImplementationTests.m */,
+				7FDA50F31975AC590063CEFD /* Supporting Files */,
+			);
+			path = openCVImplementationTests;
+			sourceTree = "<group>";
+		};
+		7FDA50F31975AC590063CEFD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA50F41975AC590063CEFD /* openCVImplementationTests-Info.plist */,
+				7FDA50F51975AC590063CEFD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7FDA50CA1975AC590063CEFD /* openCVImplementation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FDA50FC1975AC590063CEFD /* Build configuration list for PBXNativeTarget "openCVImplementation" */;
+			buildPhases = (
+				7FDA50C71975AC590063CEFD /* Sources */,
+				7FDA50C81975AC590063CEFD /* Frameworks */,
+				7FDA50C91975AC590063CEFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = openCVImplementation;
+			productName = openCVImplementation;
+			productReference = 7FDA50CB1975AC590063CEFD /* openCVImplementation.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7FDA50EB1975AC590063CEFD /* openCVImplementationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FDA50FF1975AC590063CEFD /* Build configuration list for PBXNativeTarget "openCVImplementationTests" */;
+			buildPhases = (
+				7FDA50E81975AC590063CEFD /* Sources */,
+				7FDA50E91975AC590063CEFD /* Frameworks */,
+				7FDA50EA1975AC590063CEFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7FDA50F11975AC590063CEFD /* PBXTargetDependency */,
+			);
+			name = openCVImplementationTests;
+			productName = openCVImplementationTests;
+			productReference = 7FDA50EC1975AC590063CEFD /* openCVImplementationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7FDA50C31975AC590063CEFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JMPR;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jens Martensson";
+				TargetAttributes = {
+					7FDA50EB1975AC590063CEFD = {
+						TestTargetID = 7FDA50CA1975AC590063CEFD;
+					};
+				};
+			};
+			buildConfigurationList = 7FDA50C61975AC590063CEFD /* Build configuration list for PBXProject "openCVImplementation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7FDA50C21975AC590063CEFD;
+			productRefGroup = 7FDA50CC1975AC590063CEFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7FDA50CA1975AC590063CEFD /* openCVImplementation */,
+				7FDA50EB1975AC590063CEFD /* openCVImplementationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7FDA50C91975AC590063CEFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA50D91975AC590063CEFD /* InfoPlist.strings in Resources */,
+				7FDA50E71975AC590063CEFD /* Images.xcassets in Resources */,
+				7FDA50DF1975AC590063CEFD /* Credits.rtf in Resources */,
+				7FDA50E51975AC590063CEFD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FDA50EA1975AC590063CEFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA50F71975AC590063CEFD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7FDA50C71975AC590063CEFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA50DB1975AC590063CEFD /* main.m in Sources */,
+				7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */,
+				7FDA50E21975AC590063CEFD /* JMPRAppDelegate.m in Sources */,
+				7FDA51041975CD6C0063CEFD /* JMPRAppController.mm in Sources */,
+				7FFFEA01197E795300483D0C /* JMPRcalc3d.mm in Sources */,
+				7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */,
+				7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FDA50E81975AC590063CEFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDA50F91975AC590063CEFD /* openCVImplementationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7FDA50F11975AC590063CEFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7FDA50CA1975AC590063CEFD /* openCVImplementation */;
+			targetProxy = 7FDA50F01975AC590063CEFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7FDA50D71975AC590063CEFD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FDA50D81975AC590063CEFD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7FDA50DD1975AC590063CEFD /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FDA50DE1975AC590063CEFD /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		7FDA50E31975AC590063CEFD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FDA50E41975AC590063CEFD /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7FDA50F51975AC590063CEFD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FDA50F61975AC590063CEFD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7FDA50FA1975AC590063CEFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7FDA50FB1975AC590063CEFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7FDA50FD1975AC590063CEFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/johndoe/Develop/frameworks,
+				);
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "openCVImplementation/openCVImplementation-Prefix.pch";
+				INFOPLIST_FILE = "openCVImplementation/openCVImplementation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7FDA50FE1975AC590063CEFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/johndoe/Develop/frameworks,
+				);
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "openCVImplementation/openCVImplementation-Prefix.pch";
+				INFOPLIST_FILE = "openCVImplementation/openCVImplementation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7FDA51001975AC590063CEFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/openCVImplementation.app/Contents/MacOS/openCVImplementation";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "openCVImplementation/openCVImplementation-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "openCVImplementationTests/openCVImplementationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7FDA51011975AC590063CEFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/openCVImplementation.app/Contents/MacOS/openCVImplementation";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "openCVImplementation/openCVImplementation-Prefix.pch";
+				INFOPLIST_FILE = "openCVImplementationTests/openCVImplementationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7FDA50C61975AC590063CEFD /* Build configuration list for PBXProject "openCVImplementation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FDA50FA1975AC590063CEFD /* Debug */,
+				7FDA50FB1975AC590063CEFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FDA50FC1975AC590063CEFD /* Build configuration list for PBXNativeTarget "openCVImplementation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FDA50FD1975AC590063CEFD /* Debug */,
+				7FDA50FE1975AC590063CEFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FDA50FF1975AC590063CEFD /* Build configuration list for PBXNativeTarget "openCVImplementationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FDA51001975AC590063CEFD /* Debug */,
+				7FDA51011975AC590063CEFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7FDA50C31975AC590063CEFD /* Project object */;
+}
