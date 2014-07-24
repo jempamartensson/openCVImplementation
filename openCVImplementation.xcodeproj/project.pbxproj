@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0669AC19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */; };
 		7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */; };
 		7F6185E41980EF63009AD94D /* JMPRflannMatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */; };
+		7F6185E719812850009AD94D /* JMPRfarnebackOf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */; };
 		7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F65ED04197976F200C39397 /* JMPRgetCamera.mm */; };
 		7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEACA71976E4300001C05C /* openCVtoImage.mm */; };
 		7FDA50CF1975AC590063CEFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA50CE1975AC590063CEFD /* Cocoa.framework */; };
@@ -38,10 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F0669AA19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMPRfeatureFinAndMatch.h; path = ../JMPRfeatureFinAndMatch.h; sourceTree = "<group>"; };
+		7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = JMPRfeatureFinAndMatch.mm; path = ../JMPRfeatureFinAndMatch.mm; sourceTree = "<group>"; };
 		7F241A52197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcreate3DchessboardCorners.h; sourceTree = "<group>"; };
 		7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcreate3DchessboardCorners.mm; sourceTree = "<group>"; };
 		7F6185E21980EF63009AD94D /* JMPRflannMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRflannMatcher.h; sourceTree = "<group>"; };
 		7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRflannMatcher.mm; sourceTree = "<group>"; };
+		7F6185E519812850009AD94D /* JMPRfarnebackOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRfarnebackOf.h; sourceTree = "<group>"; };
+		7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRfarnebackOf.mm; sourceTree = "<group>"; };
 		7F65ED03197976F200C39397 /* JMPRgetCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRgetCamera.h; sourceTree = "<group>"; };
 		7F65ED04197976F200C39397 /* JMPRgetCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRgetCamera.mm; sourceTree = "<group>"; };
 		7FBEACA61976E4300001C05C /* openCVtoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openCVtoImage.h; path = ../openCVtoImage.h; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 				7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */,
 				7FFFE9FF197E795300483D0C /* JMPRcalc3d.h */,
 				7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */,
+				7F0669AA19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.h */,
+				7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */,
+				7F6185E519812850009AD94D /* JMPRfarnebackOf.h */,
+				7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */,
 				7F6185E21980EF63009AD94D /* JMPRflannMatcher.h */,
 				7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */,
 				7F65ED03197976F200C39397 /* JMPRgetCamera.h */,
@@ -289,12 +299,14 @@
 			files = (
 				7FDA50DB1975AC590063CEFD /* main.m in Sources */,
 				7F6185E41980EF63009AD94D /* JMPRflannMatcher.mm in Sources */,
+				7F6185E719812850009AD94D /* JMPRfarnebackOf.mm in Sources */,
 				7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */,
 				7FDA50E21975AC590063CEFD /* JMPRAppDelegate.m in Sources */,
 				7FDA51041975CD6C0063CEFD /* JMPRAppController.mm in Sources */,
 				7FFFEA01197E795300483D0C /* JMPRcalc3d.mm in Sources */,
 				7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */,
 				7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */,
+				7F0669AC19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

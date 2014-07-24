@@ -46,17 +46,17 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     
     
     // detectingkeypoints
-    int minHessian = 410;
+    int minHessian = 400;
     SurfFeatureDetector detector(minHessian);
     vector<KeyPoint> keypoints_1, keypoints_2;
-    detector.detect(bwimg1und, keypoints_1);
-    detector.detect(bwimg2und, keypoints_2);
+    detector.detect(bwimg1, keypoints_1);
+    detector.detect(bwimg2, keypoints_2);
     
     // computing descriptors
     SurfDescriptorExtractor extractor;
     Mat descriptors_1, descriptors_2;
-    extractor.compute(bwimg1und, keypoints_1, descriptors_1);
-    extractor.compute(bwimg2und, keypoints_2, descriptors_2);
+    extractor.compute(bwimg1, keypoints_1, descriptors_1);
+    extractor.compute(bwimg2, keypoints_2, descriptors_2);
     
     
 //    cv::BFMatcher matcher(cv::NORM_L1, true);
@@ -111,64 +111,72 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
         imgpts1good.push_back(keypoints_1[good_matches[i].queryIdx].pt);
         imgpts2good.push_back(keypoints_2[good_matches[i].trainIdx].pt);
     }
-
+    std::vector<cv::Point2f>imgpts1goodund,imgpts2goodund;
+    
+    undistortPoints(imgpts1, imgpts1goodund, cameraM, distM);
+    undistortPoints(imgpts2, imgpts2goodund, cameraM, distM);
     
     int pts_size = keypoints_1.size();
     
     //draw the matches
     cv::Mat img_matches;
     drawMatches( img1, keypoints_1, img2, keypoints_2,
-                good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+                matches, img_matches, Scalar::all(-1), Scalar::all(-1),
                 vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
     
     cout<<"Size of imgpts1 is :"<<imgpts1.size()<<"\n";
     
     
-    cv::Mat F=findFundamentalMat(imgpts1good,imgpts2good,cv::FM_RANSAC,0.1, 0.99);
+    cv::Mat F=findFundamentalMat(imgpts1goodund,imgpts2goodund,cv::FM_RANSAC,3.0, 0.99);
     cout<<"Fundamental M done \n";
     cout<<"F has :"<<F.rows<<" rows\n";
     
     
     E = cameraM.t() * F * cameraM;
+    SVD svd( E );
+    static const Mat W = (Mat_<double>(3, 3) <<
+                          0, -1, 0,
+                          1, 0, 0,
+                          0, 0, 1);
     
+    static const Mat W_inv = W.inv();
     
-    cv::SVD svd(E,cv::SVD::MODIFY_A);
-    cv::Mat svd_u = svd.u;
-    cv::Mat svd_vt = svd.vt;
-    cv::Mat svd_w = svd.w;
+    Mat_<double> R1 = svd.u * W * svd.vt;
+    Mat_<double> t1 = svd.u.col( 2 );
     
-    cv::Matx33d W(0,-1,0,//HZ 9.13
-              1,0,0,
-              0,0,1);
-    cv::Mat_<double> R = svd_u * cv::Mat(W) * svd_vt; //HZ 9.19
-    cv::Mat_<double> t = svd_u.col(2); //u3
+    Mat_<double> R2 = svd.u * W_inv * svd.vt;
+    Mat_<double> t2 = -svd.u.col( 2 );
     
-    static const cv::Mat P1 = cv::Mat::eye(3, 4, CV_64FC1 );
-    cv::Matx34d P2(R(0,0),R(0,1),R(0,2),t(0),
-                 R(1,0),R(1,1),R(1,2),t(1),
-                 R(2,0),R(2,1),R(2,2),t(2));
+    static const Mat P1 = Mat::eye(3, 4, CV_64FC1 );
+    Mat P2 =( Mat_<double>(3, 4) <<
+             R1(0, 0), R1(0, 1), R1(0, 2), t1(0),
+             R1(1, 0), R1(1, 1), R1(1, 2), t1(1),
+             R1(2, 0), R1(2, 1), R1(2, 2), t1(2));
     
     cout<<"R, t P1 and P2 done \n";
     
-    //undistort points using distM
-    cv::Mat pt_set1_pt,pt_set2_pt;
-    cv::undistortPoints(imgpts1, pt_set1_pt, cameraM, distM);
-	cv::undistortPoints(imgpts2, pt_set2_pt, cameraM, distM);
     
     cout<<"Undistort done \n";
     
-    cv::Mat pt_set1_pt_2r = pt_set1_pt.reshape(1, 2);
-    cv::Mat pt_set2_pt_2r = pt_set2_pt.reshape(1, 2);
+
     cv::Mat pt_3d_h(1,pts_size,CV_32FC4);
     
-    cv::triangulatePoints(P1, P2, imgpts1, imgpts2, pt_3d_h);
+    cv::triangulatePoints(P1, P2, imgpts1goodund, imgpts2goodund, pt_3d_h);
+    
+//    vector<Mat> splitted = {
+//        pt_3d_h.row(0) / pt_3d_h.row(3),
+//        pt_3d_h.row(1) / pt_3d_h.row(3),
+//        pt_3d_h.row(2) / pt_3d_h.row(3)
+//    };
+//    
+//    merge( splitted, pt_3d_h );
     
     cout<<"Triangulate done \n";
     
     std::vector<cv::Point3f> pt_3d;
     cv::convertPointsHomogeneous(pt_3d_h.reshape(4, 1), pt_3d);
-    cv::Vec3d rvec; Rodrigues(R ,rvec);
-    cv::Vec3d tvec(t(0,3),t(1,3),t(2,3));
+    cv::Vec3d rvec; Rodrigues(R1 ,rvec);
+    cv::Vec3d tvec(t1(0,3),t1(1,3),t1(2,3));
     std::vector<cv::Point2f> reprojected_pt_set1;
     cv::projectPoints(pt_3d,rvec,tvec,cameraM,distM,reprojected_pt_set1);
     
@@ -205,14 +213,16 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
 
     Calc3d calc;
     
-    calc.ImagePoints1 = imgpts1;
-    calc.ImagePoints2 = imgpts2;
+    calc.ImagePoints1 = imgpts1goodund;
+    calc.ImagePoints2 = imgpts2goodund;
     calc.P1 = P1;
     calc.P2 = P2;
     calc.Image = img_matches;
     calc.pointCloud = pt_3d;
 
     cout<<"Calc done \n";
+    
+    cout<<"Camera P1: "<<calc.P1;
     
     
     return calc;

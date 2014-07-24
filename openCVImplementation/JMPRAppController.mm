@@ -12,6 +12,7 @@
 #import "JMPRcalc3d.h"
 #import <fstream>
 #import "JMPRflannMatcher.h"
+#import "JMPRfarnebackOf.h"
 
 
 using namespace cv;
@@ -67,19 +68,30 @@ typedef struct Calc3d
     cv::Mat outImage;
     
     cv::undistort(camera.Image, outImage, camera.CameraMatrix, camera.DistortionCoefficients);
-    cv:cvtColor(outImage, drawimage, CV_GRAY2BGR);
+    //cv:cvtColor(outImage, drawimage, CV_GRAY2BGR);
     
     Calc3d calc;
+    
+    Mat cam_matrix = (Mat_<double>(3, 3) <<
+                      6624.070862,           0, 1008.853968,
+                      0, 6624.995786, 1132.158299,
+                      0,           0, 1);
+    
+    Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
+    
     
     cv::Mat img1;
     cv::Mat img2;
     
-    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg");
-    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg");
+    Mat img1distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img1.jpg" );
+    Mat img2distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img2.jpg" );
+    
+//    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg");
+//    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg");
     
     Mat imgdrawkey;
     
-    Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients,imgdrawkey);
+    //Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients,imgdrawkey);
     
 //    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_1.jpg");
 //    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_2.jpg");
@@ -88,32 +100,58 @@ typedef struct Calc3d
     //cv::undistort(img2distorted, img2, camera.CameraMatrix, camera.DistortionCoefficients);
     
     
-    //calc = getP1(img1distorted, img2distorted,camera.CameraMatrix,camera.DistortionCoefficients);
+    calc = getP1(img1distorted, img2distorted,camera.CameraMatrix,camera.DistortionCoefficients);
     
     //std::cout<<calc.pointCloud.size()<<std::endl;
     //std::cout<<calc.pointCloud.rows<<std::endl;
     
+    //Mat ofpc;
     
-    //NSImage *dimage = [NSImage imageWithCVMat:calc.Image];
+    //ofpc = sfm(img1distorted, img2distorted, cam_matrix, dist_coeff);
     
-    NSImage *image = [NSImage imageWithCVMat:imgdrawkey];
+    //cout<<ofpc.cols<<std::endl;
     
-    [imageViewOne setImage:image];
+//    vector<Point3f> points;
+//    for ( int i = 0; i < ofpc.cols; i++ ) {
+//        Mat m = ofpc.col( i );
+//        float x = m.at<float>(0);
+//        float y = m.at<float>(1);
+//        float z = m.at<float>(2);
+//        
+//        points.push_back( Point3f(x, y, z) );
+//    }
+//    cout<<points.size()<<std::endl;
+//    
+//    Mat labels, center;
+//    kmeans( ofpc.t(), 1, labels, TermCriteria( CV_TERMCRIT_ITER, 1000, 1e-5), 1, KMEANS_RANDOM_CENTERS, center );
+//    
+//    for(Point3f point: points){
+//        point.x -= center.at<float>(0, 0);
+//        point.y -= center.at<float>(0, 1);
+//        point.z -= center.at<float>(0, 2);
+//    }
+//    
+    
+    NSImage *dimage = [NSImage imageWithCVMat:calc.Image];
+    
+    //NSImage *image = [NSImage imageWithCVMat:imgdrawkey];
+    
+    [imageViewOne setImage:dimage];
     
     //[imageViewTwo setImage:dimage];
     
-//    std::ofstream myfile;
-//    myfile.open ("/Users/johndoe/Develop/statue_picture/example.txt");
-//    
-//    for(unsigned int i = 0;i < calc.pointCloud.size(); i++){
-//        
-//        cv::Point3f pt;
-//        //std::cout<<calc.pointCloud.at(i)<<std::endl;
-//        pt = calc.pointCloud.at(i);
-//        
-//        myfile<<pt.x<<" "<<pt.y<<" "<<pt.z<<" "<<std::endl;
-//    }
-//    myfile.close();
+    std::ofstream myfile;
+    myfile.open ("/Users/johndoe/Develop/statue_picture/example.txt");
+    
+    for(unsigned int i = 0;i < calc.pointCloud.size(); i++){
+        
+        cv::Point3f pt;
+        //std::cout<<calc.points.at(i)<<std::endl;
+        pt = calc.pointCloud.at(i);
+        
+        myfile<<pt.x<<" "<<pt.y<<" "<<pt.z<<" "<<std::endl;
+    }
+    myfile.close();
     
  
 
