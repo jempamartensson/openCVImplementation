@@ -73,8 +73,8 @@ typedef struct Calc3d
     cv::Mat img1;
     cv::Mat img2;
     
-    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/develop_picture/image_1.jpg");
-    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/develop_picture/image_2.jpg");
+    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg");
+    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg");
     
     //cv::undistort(img1distorted, img1, camera.CameraMatrix, camera.DistortionCoefficients);
     //cv::undistort(img2distorted, img2, camera.CameraMatrix, camera.DistortionCoefficients);
@@ -100,7 +100,7 @@ typedef struct Calc3d
     for(unsigned int i = 0;i < calc.pointCloud.size(); i++){
         
         cv::Point3f pt;
-        std::cout<<calc.pointCloud.at(i)<<std::endl;
+        //std::cout<<calc.pointCloud.at(i)<<std::endl;
         pt = calc.pointCloud.at(i);
         
         myfile<<pt.x<<" "<<pt.y<<" "<<pt.z<<" "<<std::endl;

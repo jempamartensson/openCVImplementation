@@ -34,8 +34,14 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     Mat bwimg1;
     Mat bwimg2;
     
-    cvtColor(img1, bwimg1, CV_RGB2GRAY);
-    cvtColor(img2, bwimg2, CV_RGB2GRAY);
+    Mat bwimg1und;
+    Mat bwimg2und;
+    
+    cvtColor(img1, bwimg1, CV_BGR2GRAY);
+    cvtColor(img2, bwimg2, CV_BGR2GRAY);
+    
+    undistort(bwimg1, bwimg1und, cameraM, distM);
+    undistort(bwimg2, bwimg2und, cameraM, distM);
     
     
     
@@ -43,41 +49,42 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     int minHessian = 400;
     SurfFeatureDetector detector(minHessian);
     vector<KeyPoint> keypoints_1, keypoints_2;
-    detector.detect(bwimg1, keypoints_1);
-    detector.detect(bwimg2, keypoints_2);
+    detector.detect(bwimg1und, keypoints_1);
+    detector.detect(bwimg2und, keypoints_2);
     
     // computing descriptors
     SurfDescriptorExtractor extractor;
     Mat descriptors_1, descriptors_2;
-    extractor.compute(bwimg1, keypoints_1, descriptors_1);
-    extractor.compute(bwimg2, keypoints_2, descriptors_2);
+    extractor.compute(bwimg1und, keypoints_1, descriptors_1);
+    extractor.compute(bwimg2und, keypoints_2, descriptors_2);
     
     
-    cv::BFMatcher matcher(cv::NORM_L1, true);
-    std::vector< cv::DMatch > matches;
-    matcher.match( descriptors_1, descriptors_2, matches );
-    
-//    FlannBasedMatcher matcher;
-//    std::vector< DMatch > matches;
+//    cv::BFMatcher matcher(cv::NORM_L1, true);
+//    std::vector< cv::DMatch > matches;
 //    matcher.match( descriptors_1, descriptors_2, matches );
-//
-//    
-//    double max_dist = 0; double min_dist = 100;
-//    
-//    //-- Quick calculation of max and min distances between keypoints
-//    for( int i = 0; i < descriptors_1.rows; i++ )
-//    { double dist = matches[i].distance;
-//        if( dist < min_dist ) min_dist = dist;
-//        if( dist > max_dist ) max_dist = dist;
-//    }
-//
-//    std::vector< DMatch > good_matches;
-//    
-//    for( int i = 0; i < descriptors_1.rows; i++ )
-//    { if( matches[i].distance <= max(2*min_dist, 0.02) )
-//    { good_matches.push_back( matches[i]); }
-//    }
     
+    FlannBasedMatcher matcher;
+    
+    std::vector< DMatch > matches;
+    matcher.match( descriptors_1, descriptors_2, matches );
+
+    
+    double max_dist = 10; double min_dist = 0;
+    
+    //-- Quick calculation of max and min distances between keypoints
+    for( int i = 0; i < descriptors_1.rows; i++ )
+    { double dist = matches[i].distance;
+        if( dist < min_dist ) min_dist = dist;
+        if( dist > max_dist ) max_dist = dist;
+    }
+
+    std::vector< DMatch > good_matches;
+    
+    for( int i = 0; i < descriptors_1.rows; i++ )
+    { if( matches[i].distance <= max(2*min_dist, 0.01) )
+    { good_matches.push_back( matches[i]); }
+    }
+    cout<<"Good matches are : "<<good_matches.size()<<"\n";
     
     
     
@@ -97,6 +104,12 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
         imgpts1.push_back(keypoints_1[matches[i].queryIdx].pt);
         imgpts2.push_back(keypoints_2[matches[i].trainIdx].pt);
     }
+    
+    std::vector<cv::Point2f>imgpts1good,imgpts2good;
+    for( unsigned int i = 0; i<good_matches.size(); i++){
+        imgpts1good.push_back(keypoints_1[good_matches[i].queryIdx].pt);
+        imgpts2good.push_back(keypoints_2[good_matches[i].trainIdx].pt);
+    }
 
     
     int pts_size = keypoints_1.size();
@@ -107,10 +120,12 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
                 matches, img_matches, Scalar::all(-1), Scalar::all(-1),
                 vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
     
+    cout<<"Size of imgpts1 is :"<<imgpts1.size()<<"\n";
     
     
-    cv::Mat F=findFundamentalMat(imgpts1,imgpts2,cv::FM_RANSAC,0.1, 0.99);
+    cv::Mat F=findFundamentalMat(imgpts1good,imgpts2good,cv::FM_RANSAC,0.1, 0.99);
     cout<<"Fundamental M done \n";
+    cout<<"F has :"<<F.rows<<" rows\n";
     
     
     E = cameraM.t() * F * cameraM;
@@ -145,7 +160,7 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     cv::Mat pt_set2_pt_2r = pt_set2_pt.reshape(1, 2);
     cv::Mat pt_3d_h(1,pts_size,CV_32FC4);
     
-    cv::triangulatePoints(P1, P2, pt_set1_pt, pt_set2_pt, pt_3d_h);
+    cv::triangulatePoints(P1, P2, imgpts1, imgpts2, pt_3d_h);
     
     cout<<"Triangulate done \n";
     
@@ -155,6 +170,29 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     cv::Vec3d tvec(t(0,3),t(1,3),t(2,3));
     std::vector<cv::Point2f> reprojected_pt_set1;
     cv::projectPoints(pt_3d,rvec,tvec,cameraM,distM,reprojected_pt_set1);
+    
+    cout<<"3d points size : "<<pt_3d.size()<<"\n";
+    
+    //cout<<"Reprojected point 1: "<<reprojected_pt_set1.at(1)<<"\n";
+    //cout<<"Original point 1: "<<imgpts1.at(1)<<"\n";
+    
+    cout<<"Reprojected points: "<<reprojected_pt_set1.size()<<"\n";
+    
+    cout<<"Original points: "<<imgpts1.size()<<"\n";
+    
+    for (unsigned int i = 0; i < reprojected_pt_set1.size(); i++){
+        Point2f pt_3d_distance;
+        pt_3d_distance = reprojected_pt_set1.at(i);
+        Point2f pt_2d_distance;
+        pt_2d_distance = imgpts1.at(i);
+        
+        double distance;
+        distance = sqrt(pow((pt_3d_distance.x - pt_2d_distance.x),2)+pow((pt_3d_distance.y - pt_2d_distance.y),2));
+        if (distance < 100) {
+            cout<<"The distance is :"<<distance<<"\n";
+        }
+    
+        }
     
 //	for (unsigned int i=0; i<pts_size; i++) {
 //		CloudPoint cp;
