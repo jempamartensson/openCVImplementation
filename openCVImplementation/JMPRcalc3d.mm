@@ -46,7 +46,7 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     
     
     // detectingkeypoints
-    int minHessian = 400;
+    int minHessian = 410;
     SurfFeatureDetector detector(minHessian);
     vector<KeyPoint> keypoints_1, keypoints_2;
     detector.detect(bwimg1und, keypoints_1);
@@ -67,9 +67,10 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     
     std::vector< DMatch > matches;
     matcher.match( descriptors_1, descriptors_2, matches );
+    
 
     
-    double max_dist = 10; double min_dist = 0;
+    double max_dist = 0; double min_dist = 100;
     
     //-- Quick calculation of max and min distances between keypoints
     for( int i = 0; i < descriptors_1.rows; i++ )
@@ -81,7 +82,7 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     std::vector< DMatch > good_matches;
     
     for( int i = 0; i < descriptors_1.rows; i++ )
-    { if( matches[i].distance <= max(2*min_dist, 0.01) )
+    { if( matches[i].distance <= max(2*min_dist, 0.02) )
     { good_matches.push_back( matches[i]); }
     }
     cout<<"Good matches are : "<<good_matches.size()<<"\n";
@@ -117,7 +118,7 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     //draw the matches
     cv::Mat img_matches;
     drawMatches( img1, keypoints_1, img2, keypoints_2,
-                matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+                good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
                 vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
     
     cout<<"Size of imgpts1 is :"<<imgpts1.size()<<"\n";
