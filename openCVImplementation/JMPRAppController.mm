@@ -77,7 +77,9 @@ typedef struct Calc3d
     cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg");
     cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg");
     
-    Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients);
+    Mat imgdrawkey;
+    
+    Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients,imgdrawkey);
     
 //    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_1.jpg");
 //    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_2.jpg");
@@ -94,7 +96,7 @@ typedef struct Calc3d
     
     //NSImage *dimage = [NSImage imageWithCVMat:calc.Image];
     
-    NSImage *image = [NSImage imageWithCVMat:flannImg];
+    NSImage *image = [NSImage imageWithCVMat:imgdrawkey];
     
     [imageViewOne setImage:image];
     

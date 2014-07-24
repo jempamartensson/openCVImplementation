@@ -12,7 +12,7 @@ using namespace cv;
 
 @implementation JMPRflannMatcher
 
-Mat testFlann(Mat cameraM, Mat distM){
+Mat testFlann(Mat cameraM, Mat distM, Mat &img_drawkey){
 
     Mat img_1 = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg", CV_LOAD_IMAGE_GRAYSCALE );
     Mat img_2 = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg", CV_LOAD_IMAGE_GRAYSCALE );
@@ -57,6 +57,8 @@ Mat testFlann(Mat cameraM, Mat distM){
     { double dist = matches[i].distance;
         if( dist < min_dist ) min_dist = dist;
         if( dist > max_dist ) max_dist = dist;
+        
+        
     }
     
     printf("-- Max dist : %f \n", max_dist );
@@ -66,6 +68,17 @@ Mat testFlann(Mat cameraM, Mat distM){
     //-- or a small arbitary value ( 0.02 ) in the event that min_dist is very
     //-- small)
     //-- PS.- radiusMatch can also be used here.
+    
+    
+    //convert from KeyPoint to vector 2 float
+    std::vector<cv::Point2f> imgpt1,imgpt2;
+    cv::KeyPoint::convert(keypoints_1, imgpt1);
+    cv::KeyPoint::convert(keypoints_2, imgpt2);
+    
+    drawKeypoints(img_1, keypoints_1, img_drawkey);
+    
+    
+    
     std::vector< DMatch > good_matches;
     
     for( int i = 0; i < descriptors_1.rows; i++ )
@@ -83,7 +96,10 @@ Mat testFlann(Mat cameraM, Mat distM){
 //    imshow( "Good Matches", img_matches );
     
     for( int i = 0; i < (int)good_matches.size(); i++ )
-    { printf( "-- Good Match [%d] Keypoint 1: %d  -- Keypoint 2: %d  \n", i, good_matches[i].queryIdx, good_matches[i].trainIdx ); }
+    {
+    printf("Matches have this distance : %f \t", good_matches[i].distance);
+     printf( "-- Good Match [%d] Keypoint 1: %d  -- Keypoint 2: %d  \n", i, good_matches[i].queryIdx, good_matches[i].trainIdx );
+}
     
     
     return img_matches;
