@@ -28,7 +28,7 @@ CameraStruct CalibrateCamera(cv::Mat image, cv::Size boardSize,float squareSize,
     cv::Size imageSize = image.size();
     
     // Find the chessboard corners
-    std::vector<std::vector<cv::Point2f> > imagePoints(1);
+    std::vector<std::vector<cv::Point2f>> imagePoints(1);
     bool found = findChessboardCorners(image, boardSize, imagePoints[0]);
     if(!found)
     {

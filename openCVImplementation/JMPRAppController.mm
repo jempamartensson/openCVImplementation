@@ -13,6 +13,7 @@
 #import <fstream>
 #import "JMPRflannMatcher.h"
 #import "JMPRfarnebackOf.h"
+#import "JMPRcalibrateCamera.h"
 
 
 using namespace cv;
@@ -42,65 +43,65 @@ typedef struct Calc3d
 
 - (IBAction)findChessPattern:(id)sender
 {
-    NSString *stringfilepath = [[NSString alloc] initWithFormat:@"%@",[pathLabelOne stringValue]];
-    int rows = [rowslabel integerValue];
-    int cols = [collabel integerValue];
-    
-    //cv::Size size = cv::Size(cols,rows);
-    
-    //std::cout<<"This is the size: "<<size<<" \n";
-    
-    std::string cFilepath([stringfilepath UTF8String]);
-    std::cout<<cFilepath;
-    cv::Mat processIMage = cv::imread(cFilepath);
-    if(processIMage.empty())
-    {
-        std::cerr << "Could not read image!" << std::endl;
-    }
-    cv::Mat drawimage;
-    cv::cvtColor(processIMage, processIMage, CV_BGR2GRAY);
-    
-    
-    std::vector<std::vector<cv::Point2f>> imagePoints(1);
-    
-    
-    CameraStruct camera = CalibrateCamera(processIMage, cv::Size(cols,rows),1,TRUE,TRUE);
-    cv::Mat outImage;
-    
-    cv::undistort(camera.Image, outImage, camera.CameraMatrix, camera.DistortionCoefficients);
-    //cv:cvtColor(outImage, drawimage, CV_GRAY2BGR);
-    
-    Calc3d calc;
-    
-    Mat cam_matrix = (Mat_<double>(3, 3) <<
-                      6624.070862,           0, 1008.853968,
-                      0, 6624.995786, 1132.158299,
-                      0,           0, 1);
-    
-    Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
-    
-    
-    cv::Mat img1;
-    cv::Mat img2;
-    
-    Mat img1distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img1.jpg" );
-    Mat img2distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img2.jpg" );
+//    NSString *stringfilepath = [[NSString alloc] initWithFormat:@"%@",[pathLabelOne stringValue]];
+//    int rows = [rowslabel integerValue];
+//    int cols = [collabel integerValue];
+//    
+//    cv::Size size = cv::Size(cols,rows);
+//    
+//    std::cout<<"This is the size: "<<size<<" \n";
+//    
+//    std::string cFilepath([stringfilepath UTF8String]);
+//    std::cout<<cFilepath;
+//    cv::Mat processIMage = cv::imread(cFilepath);
+//    if(processIMage.empty())
+//    {
+//        std::cerr << "Could not read image!" << std::endl;
+//    }
+//    cv::Mat drawimage;
+//    cv::cvtColor(processIMage, processIMage, CV_BGR2GRAY);
+//    
+//    
+//    std::vector<std::vector<cv::Point2f>> imagePoints(1);
+//    
+//    
+//    CameraStruct camera = CalibrateCamera(processIMage, cv::Size(cols,rows),1,TRUE,TRUE);
+//    cv::Mat outImage;
+//    
+//    cv::undistort(camera.Image, outImage, camera.CameraMatrix, camera.DistortionCoefficients);
+//    cv:cvtColor(outImage, drawimage, CV_GRAY2BGR);
+//    
+//    Calc3d calc;
+//    
+//    Mat cam_matrix = (Mat_<double>(3, 3) <<
+//                      6624.070862,           0, 1008.853968,
+//                      0, 6624.995786, 1132.158299,
+//                      0,           0, 1);
+//    
+//    Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
+//    
+//    
+//    cv::Mat img1;
+//    cv::Mat img2;
+//    
+//    Mat img1distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img1.jpg" );
+//    Mat img2distorted = imread( "/Users/johndoe/Develop/statue_picture/hou_img2.jpg" );
     
 //    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img1.jpg");
 //    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/statue_picture/img2.jpg");
     
-    Mat imgdrawkey;
+//    Mat imgdrawkey;
     
-    //Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients,imgdrawkey);
+//    Mat flannImg = testFlann(camera.CameraMatrix,camera.DistortionCoefficients,imgdrawkey);
     
 //    cv::Mat img1distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_1.jpg");
 //    cv::Mat img2distorted = cv::imread("/Users/johndoe/Develop/develop_picture/nelly_2.jpg");
     
-    //cv::undistort(img1distorted, img1, camera.CameraMatrix, camera.DistortionCoefficients);
-    //cv::undistort(img2distorted, img2, camera.CameraMatrix, camera.DistortionCoefficients);
+//    cv::undistort(img1distorted, img1, camera.CameraMatrix, camera.DistortionCoefficients);
+//    cv::undistort(img2distorted, img2, camera.CameraMatrix, camera.DistortionCoefficients);
     
     
-    calc = getP1(img1distorted, img2distorted,camera.CameraMatrix,camera.DistortionCoefficients);
+//    calc = getP1(img1distorted, img2distorted,camera.CameraMatrix,camera.DistortionCoefficients);
     
     //std::cout<<calc.pointCloud.size()<<std::endl;
     //std::cout<<calc.pointCloud.rows<<std::endl;
@@ -131,27 +132,32 @@ typedef struct Calc3d
 //        point.z -= center.at<float>(0, 2);
 //    }
 //    
+//    CameraStruct othercam;
+    NSString *folderpath = @"/Users/johndoe/Develop/calib_chessboards";
+
+    calibrateCamera(folderpath);
     
-    NSImage *dimage = [NSImage imageWithCVMat:calc.Image];
+    
+    //NSImage *dimage = [NSImage imageWithCVMat:calc.Image];
     
     //NSImage *image = [NSImage imageWithCVMat:imgdrawkey];
     
-    [imageViewOne setImage:dimage];
+    //[imageViewOne setImage:dimage];
     
     //[imageViewTwo setImage:dimage];
     
-    std::ofstream myfile;
-    myfile.open ("/Users/johndoe/Develop/statue_picture/example.txt");
-    
-    for(unsigned int i = 0;i < calc.pointCloud.size(); i++){
-        
-        cv::Point3f pt;
-        //std::cout<<calc.points.at(i)<<std::endl;
-        pt = calc.pointCloud.at(i);
-        
-        myfile<<pt.x<<" "<<pt.y<<" "<<pt.z<<" "<<std::endl;
-    }
-    myfile.close();
+//    std::ofstream myfile;
+//    myfile.open ("/Users/johndoe/Develop/statue_picture/example.txt");
+//    
+//    for(unsigned int i = 0;i < calc.pointCloud.size(); i++){
+//        
+//        cv::Point3f pt;
+//        //std::cout<<calc.points.at(i)<<std::endl;
+//        pt = calc.pointCloud.at(i);
+//        
+//        myfile<<pt.x<<" "<<pt.y<<" "<<pt.z<<" "<<std::endl;
+//    }
+//    myfile.close();
     
  
 
