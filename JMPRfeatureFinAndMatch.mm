@@ -33,7 +33,7 @@ void featureFinAndMatch(Mat img1,Mat img2,vector<Point2f> &pt_2d){
     
     vector<vector<DMatch>> matches;
     BFMatcher matcher;
-    matcher.knnMatch(descriptor_1, descriptor_2, matches, 500);
+    matcher.knnMatch(descriptor_1, descriptor_2, matches, 400);
     
     
     
