@@ -42,14 +42,15 @@ CameraStruct calibrateCamera(NSString *folderpath){
     vector<string> nonimages;
     
     for (int i = 0; i < filepaths.size();i++){
-        std::vector<std::vector<cv::Point2f>> imagePoints(1);
+        std::vector<cv::Point2f> imagePoints;
         Mat tempimage = imread(filepaths[i],CV_LOAD_IMAGE_GRAYSCALE);
         if(tempimage.rows)
         {
         
-        if (findChessboardCorners(tempimage, cvSize(12,13), imagePoints[0]))        {
+        if (findChessboardCorners(tempimage, cvSize(12,13), imagePoints))        {
             goodimages.push_back(filepaths[i]);
             cout<<"Found chesspatern in :"<<filepaths[i]<<"\n";
+            cout<<"This is the number of imagepoints :"<<imagePoints.size()<<"\n";
         }else{
             cout<<"Bad image :"<<filepaths[i]<<"\n";
             
@@ -66,19 +67,41 @@ CameraStruct calibrateCamera(NSString *folderpath){
     cout<<"Number of good images is :"<<goodimages.size()<<"\n";
     cout<<"Number of non images is :"<<nonimages.size()<<"\n";
     
+    
+    //Set all values before loop
+    
     unsigned int board_w = 12;
     unsigned int board_h = 13;
-    
     unsigned int n_boards = int(goodimages.size());
-    
-    
     unsigned int board_n = board_h * board_w;
+    cv::Size board_sz(board_w,board_h);
     
-    cv::Size board_sz = cv::Size(board_w,board_h);
+    std::vector<std::vector<cv::Point2f>> image_points(n_boards);
+    std::vector<std::vector<cv::Point3f>> object_points(n_boards);
+    Mat intrinsic_matrix(3,3,CV_32FC1);
+    Mat distortion_coeffs(5,1,CV_32FC1);
     
-    Mat image_points = Mat(n_boards,board_n,2,CV_32FC1);
+    for( unsigned int i = 0; i< goodimages.size();i++)
+    {
+        vector<Point2f> corners;
+        Mat tempimage =imread(goodimages[i],CV_LOAD_IMAGE_GRAYSCALE);
+        bool found = findChessboardCorners(tempimage, board_sz, corners);
+        if(found){
+            cornerSubPix(tempimage, corners, board_sz, cv::Size(-1, -1), cv::TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 30, 0.1));
+            cout<<"CornerSubPix is working \n";
+        }
+        
+    }
     
-    Mat object_points = Mat(n_boards,board_n,3,CV_32FC1);
+    
+    
+    
+    
+
+
+    
+    
+    
     
     
     
