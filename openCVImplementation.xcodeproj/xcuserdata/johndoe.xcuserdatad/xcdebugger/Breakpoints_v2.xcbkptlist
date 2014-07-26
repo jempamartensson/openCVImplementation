@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "openCVImplementation/JMPRcalibrateCamera.mm"
-            timestampString = "427989449.044299"
+            timestampString = "428088138.785476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "calibrateCamera()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "calibrateCamera(NSString *folderpath, float squaresize)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,12 +186,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "openCVImplementation/JMPRcalibrateCamera.mm"
-            timestampString = "427996048.539783"
+            timestampString = "428088138.785476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "calibrateCamera()"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "calibrateCamera(NSString *folderpath, float squaresize)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "openCVImplementation/JMPRcalibrateCamera.mm"
+            timestampString = "428088138.785476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "calibrateCamera(NSString *folderpath, float squaresize)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

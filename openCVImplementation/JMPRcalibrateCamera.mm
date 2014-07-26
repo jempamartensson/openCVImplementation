@@ -7,6 +7,7 @@
 //
 
 #import "JMPRcalibrateCamera.h"
+#import "JMPRcreate3DchessboardCorners.h"
 
 using namespace cv;
 using namespace std;
@@ -22,7 +23,7 @@ typedef struct CameraStruct
     cv::Mat Image;
 }CameraStruct;
 
-CameraStruct calibrateCamera(NSString *folderpath){
+CameraStruct calibrateCamera(NSString *folderpath, float squaresize){
     
     NSError *error = nil;
     NSArray *desktopFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folderpath error:&error];
@@ -76,14 +77,18 @@ CameraStruct calibrateCamera(NSString *folderpath){
     unsigned int board_n = board_h * board_w;
     cv::Size board_sz(board_w,board_h);
     
-    std::vector<std::vector<cv::Point2f>> image_points(n_boards);
-    std::vector<std::vector<cv::Point3f>> object_points(n_boards);
-    Mat intrinsic_matrix(3,3,CV_32FC1);
-    Mat distortion_coeffs(5,1,CV_32FC1);
+    std::vector<std::vector<cv::Point2f>> image_points;
+    std::vector<std::vector<cv::Point3f>> object_points;
+    Mat intrinsic_matrix;
+    Mat distortion_coeffs;
+    std::vector<cv::Mat> rotationVectors;
+    std::vector<cv::Mat> translationVectors;
     
     for( unsigned int i = 0; i< goodimages.size();i++)
     {
         vector<Point2f> corners;
+        vector<cv::Point3f> obj_pts;
+        obj_pts = Create3DChessboardCorners(board_sz, squaresize);
         Mat tempimage =imread(goodimages[i],CV_LOAD_IMAGE_GRAYSCALE);
         bool found = findChessboardCorners(tempimage, board_sz, corners);
         if(found){
@@ -91,9 +96,20 @@ CameraStruct calibrateCamera(NSString *folderpath){
             cout<<"CornerSubPix is working \n";
         }
         
+        image_points.push_back(corners);
+        object_points.push_back(obj_pts);
+        
+        //cout<<"The values are : "<<image_points[i]<<"\n";
     }
     
     
+    Mat image = imread(goodimages[0],CV_LOAD_IMAGE_GRAYSCALE);
+    
+    cout<<"Image size is : "<<image_points.capacity()<<"\n";
+    double rms = calibrateCamera(object_points, image_points, image.size(), intrinsic_matrix, distortion_coeffs, rotationVectors, translationVectors);
+    
+    cout<<"The Camera Intrinsic Parameters are: "<<intrinsic_matrix<<"\n";
+    cout<<"The Coeffs is: "<<distortion_coeffs<<"\n";
     
     
     

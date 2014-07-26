@@ -135,7 +135,7 @@ typedef struct Calc3d
 //    CameraStruct othercam;
     NSString *folderpath = @"/Users/johndoe/Develop/calib_chessboards";
 
-    calibrateCamera(folderpath);
+    calibrateCamera(folderpath,1.35);
     
     
     //NSImage *dimage = [NSImage imageWithCVMat:calc.Image];

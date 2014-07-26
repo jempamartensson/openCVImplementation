@@ -14,7 +14,7 @@
 
 typedef struct CameraStruct CameraStruct;
 
-CameraStruct calibrateCamera(NSString *folderpath);
+CameraStruct calibrateCamera(NSString *folderpath, float squaresize);
 
 
 @end
