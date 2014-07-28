@@ -18,9 +18,10 @@ using namespace std;
 typedef struct CameraStruct
 {
     cv::Mat CameraMatrix;
-    cv::Mat ImagePoints;
+    std::vector<std::vector<cv::Point2f>> ImagePoints;
     cv::Mat DistortionCoefficients;
     cv::Mat Image;
+    double RMS;
 }CameraStruct;
 
 CameraStruct calibrateCamera(NSString *folderpath, float squaresize){
@@ -112,21 +113,13 @@ CameraStruct calibrateCamera(NSString *folderpath, float squaresize){
     cout<<"The Coeffs is: "<<distortion_coeffs<<"\n";
     
     
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     CameraStruct camera;
+    
+    camera.CameraMatrix = intrinsic_matrix;
+    camera.DistortionCoefficients = distortion_coeffs;
+    camera.ImagePoints = image_points;
+    camera.RMS = rms;
+    
     
     return camera;
 }
