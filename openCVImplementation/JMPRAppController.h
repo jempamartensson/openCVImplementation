@@ -24,7 +24,7 @@
 
 }
 
-@property (retain) NSMutableArray *DistortionCoeff;
+
 @property (assign) IBOutlet NSWindow *window;
 
 

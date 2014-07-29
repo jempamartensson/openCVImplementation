@@ -21,7 +21,8 @@ using namespace cv;
 
 @implementation JMPRAppController
 
-@synthesize DistortionCoeff;
+NSMutableArray *distArray = [[NSMutableArray alloc] init];
+
 
 
 typedef struct CameraStruct
@@ -57,8 +58,9 @@ typedef struct Calc3d
     {
         vector<double> rowOne = distCoeff.row(0);
         NSNumber *numberincols = [[NSNumber alloc] initWithDouble:rowOne.at(i)];
-        NSLog(@"%d", i);
-        [self.DistortionCoeff addObject:numberincols];
+        [distArray addObject:numberincols];
+        
+
         
         
         
@@ -93,7 +95,7 @@ typedef struct Calc3d
 
 - (IBAction)printCoeffs:(id)sender
 {
-    NSLog(@"%@",self.DistortionCoeff);
+    NSLog(@"%@",distArray);
 }
 
 
