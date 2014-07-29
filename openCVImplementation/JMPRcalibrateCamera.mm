@@ -24,7 +24,7 @@ typedef struct CameraStruct
     double RMS;
 }CameraStruct;
 
-CameraStruct calibrateCamera(NSString *folderpath, float squaresize){
+CameraStruct calibrateCamera(NSString *folderpath, float squaresize, Mat &distCoeff,Mat &cameraM){
     
     NSError *error = nil;
     NSArray *desktopFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folderpath error:&error];
@@ -113,6 +113,8 @@ CameraStruct calibrateCamera(NSString *folderpath, float squaresize){
     cout<<"The Coeffs is: "<<distortion_coeffs<<"\n";
     
     
+    distCoeff = distortion_coeffs;
+    cameraM = intrinsic_matrix;
     CameraStruct camera;
     
     camera.CameraMatrix = intrinsic_matrix;

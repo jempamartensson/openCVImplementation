@@ -21,7 +21,7 @@ using namespace cv;
 
 @implementation JMPRAppController
 
-@synthesize DistCoeff;
+@synthesize DistortionCoeff;
 
 
 typedef struct CameraStruct
@@ -52,12 +52,14 @@ typedef struct Calc3d
     Mat cameraM = Mat::eye(3,3,CV_32F);
     Mat distCoeff(5,1,CV_32F);
     
-    calibrateCamera(folderpath,1.35);
+    calibrateCamera(folderpath,1.35,distCoeff,cameraM);
     for ( int i = 0; i < distCoeff.cols; i ++)
     {
         vector<double> rowOne = distCoeff.row(0);
         NSNumber *numberincols = [[NSNumber alloc] initWithDouble:rowOne.at(i)];
-        [self.DistCoeff addObject:numberincols];
+        NSLog(@"%d", i);
+        [self.DistortionCoeff addObject:numberincols];
+        
         
         
         
@@ -91,7 +93,7 @@ typedef struct Calc3d
 
 - (IBAction)printCoeffs:(id)sender
 {
-    NSLog(@"%@",self.DistCoeff);
+    NSLog(@"%@",self.DistortionCoeff);
 }
 
 

@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-
+using namespace cv;
+using namespace std;
 
 @interface JMPRcalibrateCamera : NSObject
 
 typedef struct CameraStruct CameraStruct;
 
-CameraStruct calibrateCamera(NSString *folderpath, float squaresize);
+CameraStruct calibrateCamera(NSString *folderpath, float squaresize, Mat &distCoeff,Mat &cameraM);
 
 
 @end
