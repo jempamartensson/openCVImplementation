@@ -35,6 +35,10 @@
 - (IBAction)findChessPattern:(id)sender;
 - (IBAction)chooseCheesboardFolder:(id)sender;
 - (IBAction)printCoeffs:(id)sender;
+- (IBAction)printCamera:(id)sender;
+- (IBAction)getFundamentalMatrix:(id)sender;
+- (IBAction)featureFinder:(id)sender;
+
 
 
 @end

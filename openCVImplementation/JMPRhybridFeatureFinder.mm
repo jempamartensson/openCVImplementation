@@ -11,20 +11,33 @@
 @implementation JMPRhybridFeatureFinder
 
 
-void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts){
+void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat &outimage){
     
     
     
     //create the keypoints
-    vector<KeyPoint> KeyPoints1, KeyPoints2;
+//    vector<KeyPoint> KeyPoints1, KeyPoints2;
+//    
+//    FAST(img_1, KeyPoints1, 1);
+//    FAST(img_2, KeyPoints2, 1);
+//    KeyPointsFilter::retainBest(KeyPoints1, 40000);
+//    KeyPointsFilter::retainBest(KeyPoints2, 40000);
     
-    FAST(img_1, KeyPoints1, 1);
-    FAST(img_2, KeyPoints2, 1);
+    int minHessian = 10;
+    
+    SurfFeatureDetector detector( minHessian );
+    
+    std::vector<KeyPoint> KeyPoints1, KeyPoints2;
+    
+    detector.detect( img_1, KeyPoints1 );
+    detector.detect( img_2, KeyPoints2 );
     
     cout<<"FAST is done \n";
     
     vector<Point2f> img_1_points;
     KeyPoint::convert(KeyPoints1, img_1_points);
+    
+    cout<<"NUmber of points found is : "<<img_1_points.size()<<"\n";
     
     vector<Point2f> img_2_points(img_1_points.size());
     
@@ -42,9 +55,13 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     vector<float> verror;
     
     calcOpticalFlowPyrLK(prevgray, gray, img_1_points, img_2_points, vstatus, verror);
+    cout<<"OF is done \n";
+    
     
     vector<Point2f> img_2_points_tofind;
     vector<int> img_2_points_index;
+    
+    cout<<"Vstatus is this size :"<<vstatus.size()<<"\n";
     
     for (int i = 0; i < vstatus.size(); i++){
         if (vstatus[i]  && verror[i] < 12.0){
@@ -65,6 +82,10 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     BFMatcher matcher(CV_L2);
     vector<vector<DMatch>> nearest_neighbour;
     matcher.radiusMatch(img_2_points_tofind_flat, img_2_features_flat, nearest_neighbour, 2.0f);
+    
+    cout<<"Nearest neighbour is :"<<nearest_neighbour.size()<<"\n";
+    
+    cout<<"BFmatcher is done \n";
     
     vector<DMatch> matches;
     
@@ -111,7 +132,10 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     img_1_pts = imagepoints_1;
     img_2_pts = imagepoints_2;
     
+    //drawKeypoints(img_1, KeyPoints1, outimage);
+    drawMatches(img_1, KeyPoints1, img_2, KeyPoints2, matches, outimage);
     
+    cout<<"hybrid is done \n";
     
 }
 

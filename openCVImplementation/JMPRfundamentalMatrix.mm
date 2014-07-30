@@ -25,8 +25,8 @@ void fundamentalMatrix(vector<Point2f> img_1_pts,vector<Point2f> img_2_pts,Mat c
     Mat_<double> R = svd.u * Mat(W) * svd.vt;
     Mat_<double> t = svd.u.col(2);
     Matx34d cameraP1(R(0,0),R(0,1),R(0,2),t(0),
-               R(1,0),R(1,1),R(1,2),t(1),
-               R(2,0),R(2,1),R(2,2),t(2));
+                     R(1,0),R(1,1),R(1,2),t(1),
+                     R(2,0),R(2,1),R(2,2),t(2));
     
    
     

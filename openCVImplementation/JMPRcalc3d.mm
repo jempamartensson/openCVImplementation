@@ -116,7 +116,7 @@ Calc3d getP1(cv::Mat img1,cv::Mat img2, cv::Mat cameraM,cv::Mat distM)
     undistortPoints(imgpts1, imgpts1goodund, cameraM, distM);
     undistortPoints(imgpts2, imgpts2goodund, cameraM, distM);
     
-    int pts_size = keypoints_1.size();
+    int pts_size = int(keypoints_1.size());
     
     //draw the matches
     cv::Mat img_matches;

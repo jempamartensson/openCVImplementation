@@ -15,6 +15,7 @@
 #import "JMPRfarnebackOf.h"
 #import "JMPRcalibrateCamera.h"
 #import "JMPRAppDelegate.h"
+#import "JMPRhybridFeatureFinder.h"
 
 
 using namespace cv;
@@ -22,6 +23,18 @@ using namespace cv;
 @implementation JMPRAppController
 
 NSMutableArray *distArray = [[NSMutableArray alloc] init];
+
+NSMutableArray *cameraArray = [[NSMutableArray alloc] init];
+
+Mat cameraM = Mat::eye(3,3,CV_32F);
+Mat distCoeff(5,1,CV_32F);
+
+Mat img_1;
+Mat img_2;
+
+vector<Point2f> img_1_pts;
+vector<Point2f> img_2_pts;
+
 
 
 
@@ -50,23 +63,25 @@ typedef struct Calc3d
    // NSString *folderpath = @"/Users/johndoe/Develop/calib_chessboards";
     NSString *folderpath = [[NSString alloc]initWithFormat:@"%@",[folderPath stringValue]];
     
-    Mat cameraM = Mat::eye(3,3,CV_32F);
-    Mat distCoeff(5,1,CV_32F);
-    
     calibrateCamera(folderpath,1.35,distCoeff,cameraM);
     for ( int i = 0; i < distCoeff.cols; i ++)
     {
-        vector<double> rowOne = distCoeff.row(0);
-        NSNumber *numberincols = [[NSNumber alloc] initWithDouble:rowOne.at(i)];
+        vector<double> rowOneCoeff = distCoeff.row(0);
+        
+        NSNumber *numberincols = [[NSNumber alloc] initWithDouble:rowOneCoeff.at(i)];
         [distArray addObject:numberincols];
-        
-
-        
-        
-        
-        
     }
   
+    for (int i = 0; i < cameraM.rows;i++){
+        
+        vector<double> row = cameraM.row(i);
+            for ( int j = 0; j < row.size();j++){
+                NSNumber *number = [[NSNumber alloc]initWithDouble:row.at(j)];
+                [cameraArray addObject:number];
+                                    
+        }
+        
+    }
 }
 
 
@@ -92,11 +107,99 @@ typedef struct Calc3d
     }];
 }
 
+- (IBAction)getFundamentalMatrix:(id)sender
+{
+    
+}
+
+- (IBAction)featureFinder:(id)sender
+{
+    
+    
+
+    
+    NSWindow *window = windowController;
+    
+    // Create and configure the panel.
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:NO];
+    [panel setAllowsMultipleSelection:YES];
+    [panel setMessage:@"Select two images."];
+    
+    // Display the panel attached to the document's window.
+    [panel beginSheetModalForWindow:window completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray* urls = [panel URLs];
+            if([urls count] <2 ){
+                NSLog(@"Not enough images, must be two");
+            }else if([urls count] > 2){
+                NSLog(@"To many images, must be two");
+            }else{
+               
+                NSString *img1path = [[NSString alloc] initWithFormat:@"%@",[urls[0] path]];
+                string path_1([img1path UTF8String]);
+                
+               // NSImage *image_1 = [[NSImage alloc]initWithContentsOfURL:urls[0]];
+                
+                img_1 = imread(path_1);
+                
+                NSString *img2path = [[NSString alloc] initWithFormat:@"%@",[urls[1] path]];
+                string path_2([img2path UTF8String]);
+                
+                img_2 = imread(path_2);
+                Mat matchimg;
+                
+                cout<<"The images are loaded with : \n"<<path_1<<endl<<path_2<<endl;
+                
+                hybridFeatureFinder(img_1, img_2, cameraM,distCoeff ,img_1_pts, img_2_pts,matchimg);
+                imwrite("/Users/johndoe/Develop/statue_picture/matchImage.jpg", matchimg);
+            }
+            
+            
+            
+        }
+        
+    }];
+    
+    
+    
+    
+}
 
 - (IBAction)printCoeffs:(id)sender
 {
     NSLog(@"%@",distArray);
 }
+
+- (IBAction)importFilesAndDirectories:(id)sender {
+    // Get the main window for the document.
+    NSWindow *window = windowController;
+    
+    // Create and configure the panel.
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:NO];
+    [panel setAllowsMultipleSelection:YES];
+    [panel setMessage:@"Import one or more files or directories."];
+    
+    // Display the panel attached to the document's window.
+    [panel beginSheetModalForWindow:window completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray* urls = [panel URLs];
+            
+            // Use the URLs to build a list of items to import.
+        }
+        
+    }];
+}
+
+
+- (IBAction)printCamera:(id)sender
+{
+    NSLog(@"%@",cameraArray);
+}
+
+
+
 
 
 - (IBAction)openImageOne:(id)sender
