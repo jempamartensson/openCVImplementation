@@ -14,7 +14,7 @@ using namespace std;
 
 @interface JMPRfundamentalMatrix : NSObject
 
-void fundamentalMatrix(vector<Point2f> img_1_pts,vector<Point2f> img_2_pts,Mat cameraM, Mat &F, Mat &E,Matx34d &P,Matx34d &P1);
+void fundamentalMatrix(vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat cameraM, Mat &F, Mat &E,Matx34d &P,Matx34d &P1);
 
 
 @end

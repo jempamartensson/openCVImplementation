@@ -782,6 +782,17 @@
                             <action selector="featureFinder:" target="6vS-G8-uH4" id="blq-rA-3Rg"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="anP-8a-vRG">
+                        <rect key="frame" x="547" y="19" width="112" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Triangulate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="N7J-iz-xmC">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="trinagulatePoints:" target="6vS-G8-uH4" id="m9w-MU-xQU"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2ST-Km-Zv3" firstAttribute="top" secondItem="BeU-Fy-R0U" secondAttribute="bottom" constant="20" id="0kE-l1-Enq"/>

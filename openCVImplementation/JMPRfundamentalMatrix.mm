@@ -15,7 +15,7 @@ using namespace std;
 
 @implementation JMPRfundamentalMatrix
 
-void fundamentalMatrix(vector<Point2f> img_1_pts,vector<Point2f> img_2_pts,Mat cameraM, Mat &F, Mat &E,Matx34d &P,Matx34d &P1){
+void fundamentalMatrix(vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat cameraM, Mat &F, Mat &E,Matx34d &P,Matx34d &P1){
     
         F = findFundamentalMat(img_1_pts, img_2_pts,FM_RANSAC,0.1,0.99);
         E = cameraM.t() * F * cameraM;
@@ -36,6 +36,12 @@ void fundamentalMatrix(vector<Point2f> img_1_pts,vector<Point2f> img_2_pts,Mat c
     
     P = 0;
     P1 = cameraP1;
+    
+    vector<Point2f> correct_img_1_pts, correct_img_2_pts;
+    correctMatches(F, img_1_pts, img_2_pts, correct_img_1_pts, correct_img_2_pts);
+    
+    img_1_pts = correct_img_1_pts;
+    img_2_pts = correct_img_2_pts;
     
     }
 

@@ -23,7 +23,7 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
 //    KeyPointsFilter::retainBest(KeyPoints1, 40000);
 //    KeyPointsFilter::retainBest(KeyPoints2, 40000);
     
-    int minHessian = 10;
+    int minHessian = 500;
     
     SurfFeatureDetector detector( minHessian );
     
@@ -132,11 +132,16 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     img_1_pts = imagepoints_1;
     img_2_pts = imagepoints_2;
     
+    Mat img_1_un;
+    Mat img_2_un;
+    
     //drawKeypoints(img_1, KeyPoints1, outimage);
-    drawMatches(img_1, KeyPoints1, img_2, KeyPoints2, matches, outimage);
+    undistort(img_1, img_1_un, cameraMatrix, distCoeffs);
+    undistort(img_2, img_2_un, cameraMatrix, distCoeffs);
+    drawMatches(img_1_un, KeyPoints1, img_2_un, KeyPoints2, matches, outimage);
     
     cout<<"hybrid is done \n";
-    
+     
 }
 
 @end

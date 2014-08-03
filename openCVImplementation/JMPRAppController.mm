@@ -16,9 +16,13 @@
 #import "JMPRcalibrateCamera.h"
 #import "JMPRAppDelegate.h"
 #import "JMPRhybridFeatureFinder.h"
+#import "JMPRfundamentalMatrix.h"
+#import "JMPRtriangulate.h"
+
 
 
 using namespace cv;
+using namespace std;
 
 @implementation JMPRAppController
 
@@ -34,6 +38,13 @@ Mat img_2;
 
 vector<Point2f> img_1_pts;
 vector<Point2f> img_2_pts;
+
+Matx34d P;
+Matx34d P1;
+Mat E;
+Mat F;
+
+Mat pts_3d;
 
 
 
@@ -64,6 +75,7 @@ typedef struct Calc3d
     NSString *folderpath = [[NSString alloc]initWithFormat:@"%@",[folderPath stringValue]];
     
     calibrateCamera(folderpath,1.35,distCoeff,cameraM);
+    
     for ( int i = 0; i < distCoeff.cols; i ++)
     {
         vector<double> rowOneCoeff = distCoeff.row(0);
@@ -109,7 +121,12 @@ typedef struct Calc3d
 
 - (IBAction)getFundamentalMatrix:(id)sender
 {
-    
+    fundamentalMatrix(img_1_pts, img_2_pts, cameraM, F, E, P, P1);
+}
+
+- (IBAction)trinagulatePoints:(id)sender
+{
+    JMPRtriangulatePoints(P, P1, img_1_pts, img_2_pts, pts_3d);
 }
 
 - (IBAction)featureFinder:(id)sender
@@ -152,6 +169,7 @@ typedef struct Calc3d
                 cout<<"The images are loaded with : \n"<<path_1<<endl<<path_2<<endl;
                 
                 hybridFeatureFinder(img_1, img_2, cameraM,distCoeff ,img_1_pts, img_2_pts,matchimg);
+                 
                 imwrite("/Users/johndoe/Develop/statue_picture/matchImage.jpg", matchimg);
             }
             

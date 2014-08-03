@@ -38,6 +38,7 @@
 - (IBAction)printCamera:(id)sender;
 - (IBAction)getFundamentalMatrix:(id)sender;
 - (IBAction)featureFinder:(id)sender;
+- (IBAction)trinagulatePoints:(id)sender;
 
 
 

@@ -74,8 +74,8 @@ CameraStruct calibrateCamera(NSString *folderpath, float squaresize, Mat &distCo
     
     unsigned int board_w = 12;
     unsigned int board_h = 13;
-    unsigned int n_boards = int(goodimages.size());
-    unsigned int board_n = board_h * board_w;
+    //unsigned int n_boards = int(goodimages.size());
+    //unsigned int board_n = board_h * board_w;
     cv::Size board_sz(board_w,board_h);
     
     std::vector<std::vector<cv::Point2f>> image_points;
