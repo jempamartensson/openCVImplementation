@@ -18,6 +18,7 @@
 #import "JMPRhybridFeatureFinder.h"
 #import "JMPRfundamentalMatrix.h"
 #import "JMPRtriangulate.h"
+#import "JMPRtriangulate2.h"
 
 
 
@@ -31,6 +32,7 @@ NSMutableArray *distArray = [[NSMutableArray alloc] init];
 NSMutableArray *cameraArray = [[NSMutableArray alloc] init];
 
 Mat cameraM = Mat::eye(3,3,CV_32F);
+Mat cameraMinv = cameraM.inv();
 Mat distCoeff(5,1,CV_32F);
 
 Mat img_1;
@@ -46,6 +48,7 @@ Mat F;
 
 Mat pts_3d;
 
+vector<Point3d> pointCloud;
 
 
 
@@ -74,7 +77,7 @@ typedef struct Calc3d
    // NSString *folderpath = @"/Users/johndoe/Develop/calib_chessboards";
     NSString *folderpath = [[NSString alloc]initWithFormat:@"%@",[folderPath stringValue]];
     
-    calibrateCamera(folderpath,1.35,distCoeff,cameraM);
+    calibrateCamera(folderpath,1,distCoeff,cameraM);
     
     for ( int i = 0; i < distCoeff.cols; i ++)
     {
@@ -126,7 +129,7 @@ typedef struct Calc3d
 
 - (IBAction)trinagulatePoints:(id)sender
 {
-    JMPRtriangulatePoints(P, P1, img_1_pts, img_2_pts, pts_3d);
+    JMPRtriangulateTwo(img_1_pts, img_2_pts, P, P1, cameraM, cameraMinv, pointCloud);
 }
 
 - (IBAction)featureFinder:(id)sender

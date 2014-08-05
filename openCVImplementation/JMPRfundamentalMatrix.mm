@@ -22,8 +22,8 @@ void fundamentalMatrix(vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat
     
     SVD svd(E);
     Matx33d W(0,-1,0,1,0,0,0,0,1);
-    Mat_<double> R = svd.u * Mat(W) * svd.vt;
-    Mat_<double> t = svd.u.col(2);
+    Mat_<float> R = svd.u * Mat(W) * svd.vt;
+    Mat_<float> t = svd.u.col(2);
     Matx34d cameraP1(R(0,0),R(0,1),R(0,2),t(0),
                      R(1,0),R(1,1),R(1,2),t(1),
                      R(2,0),R(2,1),R(2,2),t(2));
@@ -42,6 +42,9 @@ void fundamentalMatrix(vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat
     
     img_1_pts = correct_img_1_pts;
     img_2_pts = correct_img_2_pts;
+    
+    cout<<"The ext cam is :"<<P1<<"\n";
+    
     
     }
 
