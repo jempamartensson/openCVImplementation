@@ -8,16 +8,11 @@
 
 #import "JMPRAppController.h"
 #import "openCVtoImage.h"
-#import "JMPRgetCamera.h"
-#import "JMPRcalc3d.h"
 #import <fstream>
-#import "JMPRflannMatcher.h"
-#import "JMPRfarnebackOf.h"
 #import "JMPRcalibrateCamera.h"
 #import "JMPRAppDelegate.h"
 #import "JMPRhybridFeatureFinder.h"
 #import "JMPRfundamentalMatrix.h"
-#import "JMPRtriangulate.h"
 #import "JMPRtriangulate2.h"
 
 
@@ -31,9 +26,9 @@ NSMutableArray *distArray = [[NSMutableArray alloc] init];
 
 NSMutableArray *cameraArray = [[NSMutableArray alloc] init];
 
-Mat cameraM = Mat::eye(3,3,CV_32F);
-Mat cameraMinv = cameraM.inv();
-Mat distCoeff(5,1,CV_32F);
+Mat K = Mat::eye(3,3,CV_64F);
+Mat Kinv = K.inv();
+Mat distCoeff(5,1,CV_64F);
 
 Mat img_1;
 Mat img_2;
@@ -61,15 +56,7 @@ typedef struct CameraStruct
 }CameraStruct;
 
 
-typedef struct Calc3d
-{
-    cv::Matx34d P1;
-    cv::Matx34d P2;
-    std::vector<cv::Point3f> ImagePoints1;
-    std::vector<cv::Point3f> ImagePoints2;
-    cv::Mat Image;
-    std::vector<cv::Point3f> pointCloud;
-}Calc3d;
+
 
 - (IBAction)findChessPattern:(id)sender
 {
@@ -77,7 +64,7 @@ typedef struct Calc3d
    // NSString *folderpath = @"/Users/johndoe/Develop/calib_chessboards";
     NSString *folderpath = [[NSString alloc]initWithFormat:@"%@",[folderPath stringValue]];
     
-    calibrateCamera(folderpath,1,distCoeff,cameraM);
+    calibrateCamera(folderpath,1,distCoeff,K);
     
     for ( int i = 0; i < distCoeff.cols; i ++)
     {
@@ -87,9 +74,9 @@ typedef struct Calc3d
         [distArray addObject:numberincols];
     }
   
-    for (int i = 0; i < cameraM.rows;i++){
+    for (int i = 0; i < K.rows;i++){
         
-        vector<double> row = cameraM.row(i);
+        vector<double> row = K.row(i);
             for ( int j = 0; j < row.size();j++){
                 NSNumber *number = [[NSNumber alloc]initWithDouble:row.at(j)];
                 [cameraArray addObject:number];
@@ -124,12 +111,13 @@ typedef struct Calc3d
 
 - (IBAction)getFundamentalMatrix:(id)sender
 {
-    fundamentalMatrix(img_1_pts, img_2_pts, cameraM, F, E, P, P1);
+
+    fundamentalMatrix(img_1_pts, img_2_pts, K, F, E, P, P1);
 }
 
 - (IBAction)trinagulatePoints:(id)sender
 {
-    JMPRtriangulateTwo(img_1_pts, img_2_pts, P, P1, cameraM, cameraMinv, pointCloud);
+    JMPRtriangulateTwo(img_1_pts, img_2_pts, P, P1, K, Kinv, pointCloud);
 }
 
 - (IBAction)featureFinder:(id)sender
@@ -171,7 +159,7 @@ typedef struct Calc3d
                 
                 cout<<"The images are loaded with : \n"<<path_1<<endl<<path_2<<endl;
                 
-                hybridFeatureFinder(img_1, img_2, cameraM,distCoeff ,img_1_pts, img_2_pts,matchimg);
+                hybridFeatureFinder(img_1, img_2, K,distCoeff ,img_1_pts, img_2_pts,matchimg);
                  
                 imwrite("/Users/johndoe/Develop/statue_picture/matchImage.jpg", matchimg);
             }
@@ -257,6 +245,23 @@ typedef struct Calc3d
         }
         
     }];
+}
+
+- (IBAction)writeKtodisk:(id)sender
+{
+    string Kfilename = "/Users/johndoe/Develop/statue_picture/K.xml";
+    FileStorage fs(Kfilename, FileStorage::WRITE);
+    fs << "K" << K;
+    fs << "distCoeff" << distCoeff;
+}
+
+- (IBAction)readKtoapp:(id)sender
+{
+    string Kfilename = "/Users/johndoe/Develop/statue_picture/K.xml";
+    FileStorage fs(Kfilename, FileStorage::READ);
+    fs["K"] >> K;
+    fs["distCoeff"] >> distCoeff;
+    
 }
 
 

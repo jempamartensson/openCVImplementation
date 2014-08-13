@@ -11,8 +11,9 @@
 @implementation JMPRhybridFeatureFinder
 
 
-void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat &outimage){
+void hybridFeatureFinder(Mat img_1,Mat img_2,Mat K, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat &outimage){
     
+
     
     
     //create the keypoints
@@ -36,6 +37,7 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     
     vector<Point2f> img_1_points;
     KeyPoint::convert(KeyPoints1, img_1_points);
+    
     
     cout<<"NUmber of points found is : "<<img_1_points.size()<<"\n";
     
@@ -96,7 +98,7 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
             _match = nearest_neighbour[i][0];
         } else if(nearest_neighbour[i].size() > 1){
             double ratio = nearest_neighbour[i][0].distance / nearest_neighbour[i][1].distance;
-            if (ratio < 0.7) {
+            if (ratio < 0.01) {
                 _match = nearest_neighbour[i][0];
             }else{
                 continue;
@@ -121,12 +123,14 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     
     for (unsigned int i = 0; i <matches.size(); i++){
         imagepoints_1.push_back(KeyPoints1[matches[i].queryIdx].pt);
+        cout<<"The First image point is :"<<KeyPoints1[matches[i].queryIdx].pt<<endl;
         imagepoints_2.push_back(KeyPoints2[matches[i].trainIdx].pt);
+        cout<<"The Second image point is :"<<KeyPoints2[matches[i].trainIdx].pt<<endl;
         
     }
     
-    undistortPoints(imagepoints_1, imagepoints_1, cameraMatrix, distCoeffs);
-    undistortPoints(imagepoints_2, imagepoints_2, cameraMatrix, distCoeffs);
+    undistortPoints(imagepoints_1, imagepoints_1, K, distCoeffs);
+    undistortPoints(imagepoints_2, imagepoints_2, K, distCoeffs);
     
     
     img_1_pts = imagepoints_1;
@@ -135,11 +139,16 @@ void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,ve
     Mat img_1_un;
     Mat img_2_un;
     
-    //drawKeypoints(img_1, KeyPoints1, outimage);
-    undistort(img_1, img_1_un, cameraMatrix, distCoeffs);
-    undistort(img_2, img_2_un, cameraMatrix, distCoeffs);
-    drawMatches(img_1_un, KeyPoints1, img_2_un, KeyPoints2, matches, outimage);
+    vector<KeyPoint> __tempKeyPoints;
     
+    
+    
+    //drawKeypoints(img_1, KeyPoints1, outimage);
+    undistort(img_1, img_1_un, K, distCoeffs);
+    undistort(img_2, img_2_un, K, distCoeffs);
+    drawMatches(img_1_un, KeyPoints1, img_2_un,KeyPoints2, matches, outimage);
+    
+    cout<<"Number of matches are :"<<img_1_pts.size()<<endl;
     cout<<"hybrid is done \n";
      
 }

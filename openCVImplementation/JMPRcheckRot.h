@@ -13,6 +13,6 @@ using namespace std;
 
 @interface JMPRcheckRot : NSObject
 
-bool checkrot(Mat_<float> &R);
+bool checkrot(Mat_<double> &R);
 
 @end

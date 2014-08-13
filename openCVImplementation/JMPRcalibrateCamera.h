@@ -15,7 +15,7 @@ using namespace std;
 
 typedef struct CameraStruct CameraStruct;
 
-CameraStruct calibrateCamera(NSString *folderpath, float squaresize, Mat &distCoeff,Mat &cameraM);
+CameraStruct calibrateCamera(NSString *folderpath, float squaresize, Mat &distCoeff,Mat &K);
 
 
 @end

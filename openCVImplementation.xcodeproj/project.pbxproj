@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F0669AC19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */; };
 		7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */; };
 		7F3B1705198FC20C0040E750 /* JMPRtriangulate2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B1704198FC20C0040E750 /* JMPRtriangulate2.mm */; };
 		7F3B1708198FD7CB0040E750 /* JMPRlinearLSTriangulation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B1707198FD7CB0040E750 /* JMPRlinearLSTriangulation.mm */; };
@@ -15,10 +14,6 @@
 		7F4642CA1987C6A300874A07 /* JMPRhybridFeatureFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F4642C91987C6A300874A07 /* JMPRhybridFeatureFinder.mm */; };
 		7F4642CD1987F8AC00874A07 /* JMPRfundamentalMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F4642CC1987F8AC00874A07 /* JMPRfundamentalMatrix.mm */; };
 		7F4642D01988FE5D00874A07 /* JMPRcheckRot.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4642CF1988FE5D00874A07 /* JMPRcheckRot.m */; };
-		7F5D053D198E6466007F5FB9 /* JMPRtriangulate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D053C198E6466007F5FB9 /* JMPRtriangulate.m */; };
-		7F6185E41980EF63009AD94D /* JMPRflannMatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */; };
-		7F6185E719812850009AD94D /* JMPRfarnebackOf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */; };
-		7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F65ED04197976F200C39397 /* JMPRgetCamera.mm */; };
 		7F8410DA198287E50058221A /* JMPRcalibrateCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8410D9198287E50058221A /* JMPRcalibrateCamera.mm */; };
 		7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FBEACA71976E4300001C05C /* openCVtoImage.mm */; };
 		7FDA50CF1975AC590063CEFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA50CE1975AC590063CEFD /* Cocoa.framework */; };
@@ -34,7 +29,6 @@
 		7FDA50F91975AC590063CEFD /* openCVImplementationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA50F81975AC590063CEFD /* openCVImplementationTests.m */; };
 		7FDA51041975CD6C0063CEFD /* JMPRAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */; };
 		7FDA51061976CDE60063CEFD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDA51051976CDE60063CEFD /* opencv2.framework */; };
-		7FFFEA01197E795300483D0C /* JMPRcalc3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F0669AA19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMPRfeatureFinAndMatch.h; path = ../JMPRfeatureFinAndMatch.h; sourceTree = "<group>"; };
-		7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = JMPRfeatureFinAndMatch.mm; path = ../JMPRfeatureFinAndMatch.mm; sourceTree = "<group>"; };
 		7F241A52197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcreate3DchessboardCorners.h; sourceTree = "<group>"; };
 		7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcreate3DchessboardCorners.mm; sourceTree = "<group>"; };
 		7F3B1703198FC20C0040E750 /* JMPRtriangulate2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRtriangulate2.h; sourceTree = "<group>"; };
@@ -64,14 +56,6 @@
 		7F4642CC1987F8AC00874A07 /* JMPRfundamentalMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRfundamentalMatrix.mm; sourceTree = "<group>"; };
 		7F4642CE1988FE5D00874A07 /* JMPRcheckRot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcheckRot.h; sourceTree = "<group>"; };
 		7F4642CF1988FE5D00874A07 /* JMPRcheckRot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPRcheckRot.m; sourceTree = "<group>"; };
-		7F5D053B198E6466007F5FB9 /* JMPRtriangulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRtriangulate.h; sourceTree = "<group>"; };
-		7F5D053C198E6466007F5FB9 /* JMPRtriangulate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPRtriangulate.m; sourceTree = "<group>"; };
-		7F6185E21980EF63009AD94D /* JMPRflannMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRflannMatcher.h; sourceTree = "<group>"; };
-		7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRflannMatcher.mm; sourceTree = "<group>"; };
-		7F6185E519812850009AD94D /* JMPRfarnebackOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRfarnebackOf.h; sourceTree = "<group>"; };
-		7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRfarnebackOf.mm; sourceTree = "<group>"; };
-		7F65ED03197976F200C39397 /* JMPRgetCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRgetCamera.h; sourceTree = "<group>"; };
-		7F65ED04197976F200C39397 /* JMPRgetCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRgetCamera.mm; sourceTree = "<group>"; };
 		7F8410D8198287E50058221A /* JMPRcalibrateCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcalibrateCamera.h; sourceTree = "<group>"; };
 		7F8410D9198287E50058221A /* JMPRcalibrateCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcalibrateCamera.mm; sourceTree = "<group>"; };
 		7FBEACA61976E4300001C05C /* openCVtoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openCVtoImage.h; path = ../openCVtoImage.h; sourceTree = "<group>"; };
@@ -98,8 +82,6 @@
 		7FDA51021975CD6C0063CEFD /* JMPRAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRAppController.h; sourceTree = "<group>"; };
 		7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRAppController.mm; sourceTree = "<group>"; };
 		7FDA51051976CDE60063CEFD /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../frameworks/opencv2.framework; sourceTree = "<group>"; };
-		7FFFE9FF197E795300483D0C /* JMPRcalc3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPRcalc3d.h; sourceTree = "<group>"; };
-		7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMPRcalc3d.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,18 +156,12 @@
 				7FDA50E31975AC590063CEFD /* MainMenu.xib */,
 				7FDA51021975CD6C0063CEFD /* JMPRAppController.h */,
 				7FDA51031975CD6C0063CEFD /* JMPRAppController.mm */,
-				7FFFE9FF197E795300483D0C /* JMPRcalc3d.h */,
-				7FFFEA00197E795300483D0C /* JMPRcalc3d.mm */,
-				7F5D053B198E6466007F5FB9 /* JMPRtriangulate.h */,
-				7F5D053C198E6466007F5FB9 /* JMPRtriangulate.m */,
 				7F3B1703198FC20C0040E750 /* JMPRtriangulate2.h */,
 				7F3B1704198FC20C0040E750 /* JMPRtriangulate2.mm */,
 				7F3B1706198FD7CB0040E750 /* JMPRlinearLSTriangulation.h */,
 				7F3B1707198FD7CB0040E750 /* JMPRlinearLSTriangulation.mm */,
 				7F3B1709198FDA430040E750 /* JMPRiterativeLinearLSTriangulation.h */,
 				7F3B170A198FDA430040E750 /* JMPRiterativeLinearLSTriangulation.mm */,
-				7F0669AA19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.h */,
-				7F0669AB19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm */,
 				7F8410D8198287E50058221A /* JMPRcalibrateCamera.h */,
 				7F8410D9198287E50058221A /* JMPRcalibrateCamera.mm */,
 				7F4642C81987C6A300874A07 /* JMPRhybridFeatureFinder.h */,
@@ -194,12 +170,6 @@
 				7F4642CC1987F8AC00874A07 /* JMPRfundamentalMatrix.mm */,
 				7F4642CE1988FE5D00874A07 /* JMPRcheckRot.h */,
 				7F4642CF1988FE5D00874A07 /* JMPRcheckRot.m */,
-				7F6185E519812850009AD94D /* JMPRfarnebackOf.h */,
-				7F6185E619812850009AD94D /* JMPRfarnebackOf.mm */,
-				7F6185E21980EF63009AD94D /* JMPRflannMatcher.h */,
-				7F6185E31980EF63009AD94D /* JMPRflannMatcher.mm */,
-				7F65ED03197976F200C39397 /* JMPRgetCamera.h */,
-				7F65ED04197976F200C39397 /* JMPRgetCamera.mm */,
 				7F241A52197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.h */,
 				7F241A53197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm */,
 				7FDA50E61975AC590063CEFD /* Images.xcassets */,
@@ -339,21 +309,15 @@
 			files = (
 				7F3B170B198FDA430040E750 /* JMPRiterativeLinearLSTriangulation.mm in Sources */,
 				7FDA50DB1975AC590063CEFD /* main.m in Sources */,
-				7F6185E41980EF63009AD94D /* JMPRflannMatcher.mm in Sources */,
-				7F6185E719812850009AD94D /* JMPRfarnebackOf.mm in Sources */,
 				7F4642D01988FE5D00874A07 /* JMPRcheckRot.m in Sources */,
 				7F8410DA198287E50058221A /* JMPRcalibrateCamera.mm in Sources */,
-				7F5D053D198E6466007F5FB9 /* JMPRtriangulate.m in Sources */,
-				7F65ED05197976F200C39397 /* JMPRgetCamera.mm in Sources */,
 				7FDA50E21975AC590063CEFD /* JMPRAppDelegate.m in Sources */,
 				7F3B1705198FC20C0040E750 /* JMPRtriangulate2.mm in Sources */,
 				7F4642CD1987F8AC00874A07 /* JMPRfundamentalMatrix.mm in Sources */,
 				7FDA51041975CD6C0063CEFD /* JMPRAppController.mm in Sources */,
 				7F4642CA1987C6A300874A07 /* JMPRhybridFeatureFinder.mm in Sources */,
-				7FFFEA01197E795300483D0C /* JMPRcalc3d.mm in Sources */,
 				7F241A54197800D300C8F6D7 /* JMPRcreate3DchessboardCorners.mm in Sources */,
 				7FBEACA81976E4300001C05C /* openCVtoImage.mm in Sources */,
-				7F0669AC19816A5B0003AAB7 /* JMPRfeatureFinAndMatch.mm in Sources */,
 				7F3B1708198FD7CB0040E750 /* JMPRlinearLSTriangulation.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

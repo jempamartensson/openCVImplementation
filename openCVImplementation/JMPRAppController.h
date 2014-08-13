@@ -39,6 +39,8 @@
 - (IBAction)getFundamentalMatrix:(id)sender;
 - (IBAction)featureFinder:(id)sender;
 - (IBAction)trinagulatePoints:(id)sender;
+- (IBAction)writeKtodisk:(id)sender;
+- (IBAction)readKtoapp:(id)sender;
 
 
 

@@ -14,6 +14,6 @@ using namespace std;
 
 @interface JMPRhybridFeatureFinder : NSObject
 
-void hybridFeatureFinder(Mat img_1,Mat img_2,Mat cameraMatrix, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat &outimage);
+void hybridFeatureFinder(Mat img_1,Mat img_2,Mat K, Mat distCoeffs,vector<Point2f> &img_1_pts,vector<Point2f> &img_2_pts,Mat &outimage);
 
 @end
