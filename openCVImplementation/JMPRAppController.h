@@ -41,6 +41,7 @@
 - (IBAction)trinagulatePoints:(id)sender;
 - (IBAction)writeKtodisk:(id)sender;
 - (IBAction)readKtoapp:(id)sender;
+- (IBAction)testOpenCV:(id)sender;
 
 
 

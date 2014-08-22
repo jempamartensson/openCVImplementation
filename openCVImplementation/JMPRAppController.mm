@@ -14,6 +14,7 @@
 #import "JMPRhybridFeatureFinder.h"
 #import "JMPRfundamentalMatrix.h"
 #import "JMPRtriangulate2.h"
+#import "JMPRtest.h"
 
 
 
@@ -44,6 +45,8 @@ Mat F;
 Mat pts_3d;
 
 vector<Point3d> pointCloud;
+
+vector<Point3d> points3d;
 
 
 
@@ -262,6 +265,12 @@ typedef struct CameraStruct
     fs["K"] >> K;
     fs["distCoeff"] >> distCoeff;
     
+}
+
+- (IBAction)testOpenCV:(id)sender
+{
+    Mat _testPointCloud;
+    testOutput(img_1_pts, img_2_pts, K, _testPointCloud, Kinv, distCoeff, points3d);
 }
 
 
